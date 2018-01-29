@@ -14,8 +14,9 @@
     <!-- <script src="https://maps.googleapis.com/maps/api/js?key=API_KEY&libraries=places"></script> -->
     <!-- <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script> -->
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCyB6K1CFUQ1RwVJ-nyXxd6W0rfiIBe12Q"
-  type="text/javascript">
-  </script>
+  type="text/javascript"></script>
+<!--     <script src="https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=Washington,DC&destinations=New+York+City,NY&key=AIzaSyCyB6K1CFUQ1RwVJ-nyXxd6W0rfiIBe12Q&libraries=places" type="text/javascript"></script> -->
+  
     <script>
 
         var directionsDisplay;
@@ -27,7 +28,7 @@
             var cantho = new google.maps.LatLng(10.0309641000, 105.7689041000);
             var mapOptions = {
                 zoom: 15,
-                // mapTypeId: google.maps.MapTypeId.ROADMAP,
+                mapTypeId: google.maps.MapTypeId.ROADMAP,
                 center: cantho
             }
             map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
@@ -41,15 +42,15 @@
 
 
             var waypts = [];
-            var checkboxArray = document.getElementById('waypoints');
-            for(var i = 0; i < checkboxArray.length; i++) {
-                if(checkboxArray.options[i].selected == true) {
-                    waypts.push({
-                        location: checkboxArray[i].value,
-                        stopover: true
-                    });
-                }
-            }
+            // var checkboxArray = document.getElementById('waypoints');
+            // for(var i = 0; i < checkboxArray.length; i++) {
+            //     if(checkboxArray.options[i].selected == true) {
+            //         waypts.push({
+            //             location: checkboxArray[i].value,
+            //             stopover: true
+            //         });
+            //     }
+            // }
 
 
             var request = {
@@ -67,11 +68,11 @@
                     summaryPanel.innerHTML = '';
                     // For each route, display summary information.
                     for(var i = 0; i < route.legs.length; i++) {
-                        var routeSegment = i + 1;
-                        summaryPanel.innerHTML += '<b>Route Segment: ' + routeSegment + '</b><br>';
-                        summaryPanel.innerHTML += route.legs[i].start_address + ' đến ';
-                        summaryPanel.innerHTML += route.legs[i].end_address + '<br>';
-                        summaryPanel.innerHTML += route.legs[i].duration.text + '<br>';
+                        // var routeSegment = i + 1;
+                        // summaryPanel.innerHTML += '<b>Route Segment: ' + routeSegment + '</b><br>';
+                        // summaryPanel.innerHTML += route.legs[i].start_address + ' đến ';
+                        // summaryPanel.innerHTML += route.legs[i].end_address + '<br>';
+                        // summaryPanel.innerHTML += route.legs[i].duration.text + '<br>';
 
                         summaryPanel.innerHTML += route.legs[i].distance.text + '<br><br>';
                         
@@ -89,13 +90,15 @@
     </script>
 </head>
 <body>
-    <!--  <div id="map-canvas"></div>-->
+      <!-- <div id="map-canvas"></div> -->
     <div>
         <strong>Start: </strong>
         <select id="start" onChange="calcRoute();">
             <option value="dai hoc can tho">ĐH Cần Thơ</option>
             <option value="dai hoc y duoc can tho">ĐH Y Cần Thơ</option>
             <option value="cao dang can tho">CĐ Cần Thơ</option>
+            <option value="10.0309641000, 105.7689041000">CĐ </option>
+            <option value="10.044095, 105.773747">PNL</option>
 
             
         </select>
@@ -103,11 +106,11 @@
         <select id="end" onChange="calcRoute();">
             <option value="dai hoc y duoc can tho">ĐH Y Cần Thơ</option>
             <option value="dai hoc can tho">ĐH Cần Thơ</option>
+            <option value="10.035358, 105.753637">ĐH </option>
             
         </select>
     </div>
-
-    <div>
+  <!--   <div>
         <strong>Mode of Travel: </strong>
         <select multiple id="waypoints" id="mode" onChange="calcRoute();">
             <option value="DRIVING">Driving</option>
@@ -118,8 +121,8 @@
 
         
 
-    </div>
-    <div>
+    </div> -->
+    <!-- <div>
         <select multiple id="waypoints" onChange="calcRoute();">
             <option value="bassi">bassi</input>
             <option value="chainpura">chainpura</input>
@@ -128,11 +131,13 @@
             <option value="dai hoc can tho">ĐH Cần Thơ</option>
             <option value="cao dang can tho">CĐ Cần Thơ</option>
         </select>
-    </div>
+    </div> -->
+    <h1>MAP</h1>
     <div id="map-canvas" style="float:left;width:70%; height:40%"></div>
 
-    <div id="directions_panel" style="margin:20px;background-color:#FFEE77; margin-top: 400px"></div>
+    <div id="directions_panel" style="margin:20px; margin-top: 400px">
 
+    </div>
 
 </body>
 </html>
